@@ -16,7 +16,7 @@ const activePost = computed(() => AppState.activePost)
 watchEffect(() => {
   const profileId = route.params.profileId
   getProfileById(profileId)
-  // getPostsByProfileId(profileId)
+  getPostsByProfileId(profileId)
 })
 
 
@@ -28,13 +28,13 @@ async function getProfileById(profileId) {
   }
 }
 
-// async function getPostsByProfileId(profileId) {
-//   try {
-//     await postService.getPostsByProfileId(profileId)
-//   } catch (error) {
-//     Pop.error(error)
-//   }
-// }
+async function getPostsByProfileId(profileId) {
+  try {
+    await postService.getPostsByProfileId(profileId)
+  } catch (error) {
+    Pop.error(error)
+  }
+}
 
 </script>
 

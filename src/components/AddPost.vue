@@ -27,17 +27,19 @@ async function createPost() {
 
 <template>
   <div v-if="account?.picture" class="card mb-3 shadow-lg p-3 mb-1 rounded">
-    <div class="mb-3  d-flex">
+    <div>
       <img :src="account.picture" alt="account photo" height="40" class="m-2 creator-picture" />
       <form @submit.prevent="createPost()">
-        <div class="form-floating mb-3 d-flex">
+        <div class="form-floating mb-3">
           <textarea v-model="editablePostData.body" type="text" class="form-control" placeholder="Shear whats happing"
-            id="description" required maxlength="500"></textarea>
+            required maxlength="500"></textarea>
         </div>
         <div>
           <input v-model="editablePostData.imgUrl" type="url" class="form-control" placeholder="ImgUrl" maxlength="500">
         </div>
-        <button type="submit" class="mdi mdi-image-multiple">Post</button>
+        <div class="d-flex justify-content-end p-2">
+          <button type="submit" class="btn btn-primary mdi mdi-image-multiple">Post</button>
+        </div>
       </form>
     </div>
   </div>

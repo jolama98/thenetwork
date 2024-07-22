@@ -36,7 +36,6 @@ async function destroyCar(postId) {
 
 
 }
-// postProp
 </script>
 
 <template>

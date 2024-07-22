@@ -2,6 +2,7 @@ import { AppState } from "../AppState.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 import { Profile } from "../models/Profile.js"
+import { Post } from "../models/Post.js"
 
 class ProfilesService {
   async getProfileById(profileId) {
