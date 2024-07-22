@@ -1,13 +1,16 @@
 import { AppState } from "../AppState.js"
-import { Account } from "../models/Account.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
+import { Profile } from "../models/Profile.js"
 
-class ProfileService {
-  async getProfileById(id) {
-    const response = await api.get(`api/profiles/${id}`)
-    logger.log(response)
-    AppState.activeProfile = new Account(response.data)
+class ProfilesService {
+  async getProfileById(profileId) {
+    AppState.profile = null
+
+    const response = await api.get(`api/profiles/${profileId}`)
+    logger.log('GOT PROFILE', response.data)
+    const profile = new Profile(response.data)
+    AppState.profile = profile
   }
 }
-export const profileService = new ProfileService()
+export const profilesService = new ProfilesService()

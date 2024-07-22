@@ -8,14 +8,17 @@ export const AppState = reactive({
   account: null,
   /** @type {import('./models/Post.js').Post[]} */
   posts: [],
+  /** @type {import('./models/Profile.js').Profile} */
+  profile: null,
+  /** @type {import('./models/Post.js').Post[]} */
+  profilePosts: [],
+
   /** @type {import ('./models/Post.js').Post} */
   activePost: null,
   currentPage: 1,
   totalPages: Infinity,
-
+  /** @type {import('./models/Account.js').Account}*/
+  activePosts: null,
   /** @type {import('./models/Ads.js').Ads[]} */
   ads: [],
-
-  /** @type {import('./models/Account.js').Account}*/
-  activeProfile: null,
 })

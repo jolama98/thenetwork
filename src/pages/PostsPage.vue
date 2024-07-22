@@ -1,26 +1,16 @@
 <script setup>
-import { computed, watchEffect } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { AppState } from '../AppState.js';
-import { postService } from '../services/PostsService.js';
-import Pop from '../utils/Pop.js';
 
 const route = useRoute()
-watchEffect(() => {
+const posts = computed(() => AppState.posts)
+const activePost = computed(() => AppState.activePost)
+
+onMounted(() => {
   const postsId = route.params.postsId
-  getPostById(postsId)
 })
 
-async function getPostById(postsId) {
-
-  try {
-    await postService.getBlogById(postsId)
-  } catch (error) {
-    Pop.error(error)
-  }
-}
-
-const activePost = computed(() => AppState.activePost)
 </script>
 
 
@@ -29,18 +19,22 @@ const activePost = computed(() => AppState.activePost)
 
     <div class="card" style="width: 48rem;">
       <div>
+        <img class="creator-picture" :src="activePost.creator.coverImg">
+        <p>{{ activePost.creator.name }}</p>
+        <p>{{ activePost.creator.github }}</p>
         <img class="creator-picture" :src="activePost.creator.picture" alt="...">
       </div>
       <div class="card-body">
         <img class="post-img" :src="activePost.imgUrl">
-        <h5 class="card-title">{{ activePost.body }}</h5>
+        <h5 class="card-title">{{ activePost.creator.bio }}</h5>
 
+      </div>
+      <div class="col-12" v-for="post in posts" :key="post.id">
+        <PostsCard :postProp="post" />
       </div>
     </div>
   </div>
 </template>
-
-
 <style lang="scss" scoped>
 .post-img {
   min-height: 100%;

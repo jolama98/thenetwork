@@ -4,10 +4,10 @@ import Pop from '../utils/Pop.js';
 import { postService } from '../services/PostsService.js';
 import { AppState } from '../AppState.js';
 
-
+const posts = computed(() => AppState.posts)
+const ads = computed(() => AppState.ads)
 
 onMounted(() => { getPosts() })
-const posts = computed(() => AppState.posts)
 
 async function getPosts() {
   try {
@@ -23,11 +23,12 @@ async function getPosts() {
 <template>
   <NavigatButton />
   <section class="container">
+    <AddPost />
+    <div v-for="ad in ads" :key="ad.title">
+      <AdCard />
+    </div>
     <div class="row">
-
-      <!-- <AdCard /> -->
-
-      <div class="col-9" v-for="post in posts" :key="post.id">
+      <div class="col-12" v-for="post in posts" :key="post.id">
         <PostsCard :postProp="post" />
       </div>
     </div>

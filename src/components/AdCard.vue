@@ -3,12 +3,15 @@ import { computed, onMounted } from 'vue';
 import { adsService } from '../services/AdsService.js';
 import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
+import { Ads } from '../models/Ads.js';
 
 onMounted(() => {
   getAds()
 })
-const ads = computed(() => { AppState.ads })
 
+const props = defineProps({
+  adProp: { type: Ads, required: true }
+})
 async function getAds() {
   try {
     await adsService.getAds()
@@ -17,10 +20,8 @@ async function getAds() {
   }
 }
 </script>
-
-
 <template>
-  <img src="https://codeworks.blob.core.windows.net/public/assets/ads/zookeeper.gif" alt="">
+  <img :src="adProp.tall" alt="">
 </template>
 
 
