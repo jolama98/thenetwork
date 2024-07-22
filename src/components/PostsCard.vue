@@ -5,6 +5,7 @@ import { postService } from '../services/PostsService.js';
 import { AppState } from '../AppState.js';
 import Pop from '../utils/Pop.js';
 const account = computed(() => AppState.account)
+
 const props = defineProps({
   postProp: { type: Post, required: true }
 })
@@ -33,8 +34,6 @@ async function destroyCar(postId) {
   } catch (error) {
     Pop.error(error)
   }
-
-
 }
 </script>
 
@@ -42,18 +41,15 @@ async function destroyCar(postId) {
   <div class="pb-5">
     <div class="card mb-3 shadow-lg p-3 mb-1 rounded">
       <div class="card-body">
-        <!-- FIXME we need to pass the id of the creator of the post for the value of the profileId -->
         <router-link :to="{ name: 'Profile', params: { profileId: postProp.creatorId } }"
           :title="`Go to ${postProp.creator.name}'s profile page`">
           <img :src="postProp.creator.picture" class="creator-picture m-2  " alt="...">
           <p>{{ postProp.creator.name }}</p>
         </router-link>
-
         <div class="d-flex justify-content-starts">
           <p>{{ postProp.createdAt.toLocaleString()
           }}hr <i :class="postProp.creator?.graduated ? 'mdi mdi-account-school fs-2' : ''"></i>
           </p>
-
         </div>
       </div>
 

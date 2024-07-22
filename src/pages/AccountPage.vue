@@ -8,11 +8,20 @@ const account = computed(() => AppState.account)
 <!-- TODO copy and paste my code from art terminal for the account form -->
 <!-- TODO add more inputs to the form so we can edit all properties of account -->
 <template>
-  <div class="about text-center">
+  <div class="about">
     <div v-if="account">
-      <h1>Welcome {{ account.name }}</h1>
-      <img class="rounded" :src="account.picture" alt="" />
-      <p>{{ account.email }}</p>
+      <div class="text-center">
+        <h1>Welcome {{ account.name }}</h1>
+        <img class="rounded" :src="account.picture" alt="" />
+        <p>{{ account.email }}</p>
+      </div>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <AccountForm />
+          </div>
+        </div>
+      </div>
     </div>
     <div v-else>
       <h1>Loading... <i class="mdi mdi-loading mdi-spin"></i></h1>

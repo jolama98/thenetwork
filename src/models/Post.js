@@ -10,6 +10,8 @@ export class Post {
     this.likes = data.likes
 
   }
+
+
 }
 
 // const posts = {

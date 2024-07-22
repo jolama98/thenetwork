@@ -1,8 +1,15 @@
 <script setup>
+import { onMounted } from 'vue';
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
-// TODO use an onmounted to get ads here
+// TODO use an onMounted to get ads here
+onMounted(() => {
+  setActiveAds()
+})
 
+function setActiveAds() {
+
+}
 </script>
 
 <template>

@@ -10,3 +10,4 @@ export class Profile {
 
   }
 }
+//(picture, name, bio, social media links, cover image, alumni status(graduated), class)
