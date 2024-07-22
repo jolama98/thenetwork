@@ -26,9 +26,8 @@ class PostService {
 
   async createPost(editablePostData) {
     const response = await api.post('api/posts', editablePostData)
-
     const newPost = new Post(response.data)
-    AppState.posts.push(newPost)
+    AppState.posts.unshift(newPost)
   }
 
   async likePosts(postId) {

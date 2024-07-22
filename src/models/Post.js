@@ -3,12 +3,11 @@ export class Post {
     this.id = data.id || data._id
     this.body = data.body
     this.imgUrl = data.imgUrl
-    this.createdId = data.createdId
+    this.creatorId = data.creatorId
     this.createdAt = new Date(data.createdAt)
     this.updatedAt = new Date(data.updatedAt)
     this.creator = data.creator
     this.likes = data.likes
-    this.profileId = data.profileId
 
   }
 }

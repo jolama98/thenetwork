@@ -42,14 +42,15 @@ async function destroyCar(postId) {
   <div class="pb-5">
     <div class="card mb-3 shadow-lg p-3 mb-1 rounded">
       <div class="card-body">
-        <router-link :to="{ name: 'Profile', params: { profileId: postProp.id } }"
+        <!-- FIXME we need to pass the id of the creator of the post for the value of the profileId -->
+        <router-link :to="{ name: 'Profile', params: { profileId: postProp.creatorId } }"
           :title="`Go to ${postProp.creator.name}'s profile page`">
           <img :src="postProp.creator.picture" class="creator-picture m-2  " alt="...">
           <p>{{ postProp.creator.name }}</p>
         </router-link>
 
         <div class="d-flex justify-content-starts">
-          <p>{{ postProp.createdAt.toLocaleTimeString([], { hour: '2-digit', hour12: false })
+          <p>{{ postProp.createdAt.toLocaleString()
           }}hr <i :class="postProp.creator?.graduated ? 'mdi mdi-account-school fs-2' : ''"></i>
           </p>
 
@@ -59,14 +60,14 @@ async function destroyCar(postId) {
       <div class="p-2">
         <p class="card-text fs-3">{{ postProp.body }}</p>
       </div>
-      <img :src="postProp.imgUrl" class="post-img" :alt="postProp.likes">
+      <img v-if="postProp.imgUrl != ''" :src="postProp.imgUrl" class="post-img" :alt="postProp.likes">
       <div class="d-flex justify-content-end m-4 ">
 
         <p class="fs-4"><i @click="likePosts(postProp.id)" class="display-5 mdi mdi-heart-outline"></i>{{
           postProp.likes.length
         }}</p>
         <div>
-          <button v-if="account?.id != postProp.createdId" @click="destroyCar(postProp.id)" class="btn btn-outline-danger"
+          <button v-if="account?.id == postProp.creatorId" @click="destroyCar(postProp.id)" class="btn btn-outline-danger"
             title="Delete Car" type="button">
             <i class="mdi mdi-close-octagon fs-3"></i>
           </button>

@@ -1,7 +1,7 @@
 <script setup>
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
-
+// TODO use an onmounted to get ads here
 
 </script>
 
@@ -13,6 +13,7 @@ import Navbar from './components/Navbar.vue'
     <router-view />
 
   </main>
+  <!-- TODO after gettings ads, v-for over them and display them -->
   <footer class="bg-dark text-light">
 
   </footer>
