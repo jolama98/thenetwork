@@ -5,8 +5,6 @@ import { AppState } from '../AppState.js';
 const account = computed(() => AppState.account)
 
 </script>
-<!-- TODO copy and paste my code from art terminal for the account form -->
-<!-- TODO add more inputs to the form so we can edit all properties of account -->
 <template>
   <div class="about">
     <div v-if="account">

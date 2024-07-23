@@ -42,9 +42,10 @@ async function getPostsByProfileId(profileId) {
   <NavigateBtn />
   <div class="d-flex justify-content-center pb-3">
     <div class="card" style="width: 48rem;">
-      <div>
+      <div class="p-2">
         <img class="creator-picture" :src="AppState.profile.picture" alt="...">
         <img class="creator-picture" :src="AppState.profile.coverImg">
+        <i :class="AppState.profile?.graduated ? 'mdi mdi-account-school fs-2' : ''"></i>
         <p>{{ AppState.profile.name }}</p>
         <a href="https://youtu.be/BBGEG21CGo0">{{ AppState.profile.linkedin }}</a>
       </div>

@@ -32,7 +32,6 @@ const routes = [
     component: loadPage('AccountPage'),
     beforeEnter: authGuard
   }
-  // TODO add search page, reference Mick's code from Vue Flix
 ]
 
 export const router = createRouter({
