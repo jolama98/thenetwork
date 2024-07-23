@@ -37,7 +37,7 @@ class PostService {
     const posts = response.data.posts.map(postsPOJO => new Post(postsPOJO))
     AppState.posts = posts
     AppState.currentPage = response.data.page
-    AppState.totalPages = response.data.pages
+    AppState.totalPages = response.data.page
   }
 
   async destroyPost(postId) {
@@ -46,6 +46,23 @@ class PostService {
     if (postIndex == -1) throw new Error("You messed up on findIndex")
     AppState.posts.splice(postIndex, 1)
   }
+
+
+  async changePage(pageNumber) {
+    const response = await api.get(`api/post?page=${pageNumber}`)
+    const posts = response.data.posts.map(PostData => new Post(PostData))
+    AppState.posts = posts
+    AppState.currentPage = response.data.page
+    AppState.totalPages = response.data.total_pages
+  }
+  async changePageV2(pageNumber) {
+    const response = await api.get(`api/post?page=${pageNumber}`)
+    const posts = response.data.posts.map(PostData => new Post(PostData))
+    AppState.posts = posts
+    AppState.currentPage = response.data.page
+    AppState.totalPages = response.data.total_pages
+  }
+
 }
 
 export const postService = new PostService()

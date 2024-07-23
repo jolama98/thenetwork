@@ -24,14 +24,14 @@ class ProfilesService {
     // api / posts ? query = query
   }
 
-  async changePage(pageNumber) {
-    const response = await api.get(`api/posts/?page=${pageNumber}`)
-    console.log('📃🎞️📡', response.data);
-    const profile = response.data.posts.map(profileData => new Profile(profileData))
-    AppState.profile = profile
-    AppState.currentPage = response.data.page
-    AppState.totalPages = response.data.total_pages
-  }
+  // async changePage(pageNumber) {
+  //   const response = await api.get(`api/posts/?page=${pageNumber}`)
+  //   console.log('📃🎞️📡', response.data);
+  //   const profile = response.data.posts.map(profileData => new Profile(profileData))
+  //   AppState.profile = profile
+  //   AppState.currentPage = response.data.page
+  //   AppState.totalPages = response.data.total_pages
+  // }
 
   async searchProfiles(searchTerm) {
     const response = await api.get(`api/posts?query=${searchTerm}`)
