@@ -1,6 +1,5 @@
 import { AppState } from "../AppState.js"
 import { Post } from "../models/Post.js"
-import { logger } from "../utils/Logger.js";
 import { api } from "./AxiosService.js"
 
 class PostService {
@@ -8,12 +7,6 @@ class PostService {
   setActivePost(posts) {
     AppState.activePost = posts
   }
-
-  // const response = await api.get('api/projects')
-  //   logger.log('GOT PROJECTS 🖼️🎨🎭', response.data)
-  // const projects = response.data.map(projectPOJO => new Project(projectPOJO))
-  //   AppState.projects = projects
-
   async getPosts() {
     const response = await api.get('api/posts')
     const posts = response.data.posts.map(postsPOJO => new Post(postsPOJO))
@@ -50,7 +43,7 @@ class PostService {
   async destroyPost(postId) {
     const response = await api.delete(`api/posts/${postId}`)
     const postIndex = AppState.posts.findIndex(Post => Post.id == postId)
-    if (postIndex == -1) throw new Error("You messed up on findIndex, big fella")
+    if (postIndex == -1) throw new Error("You messed up on findIndex")
     AppState.posts.splice(postIndex, 1)
   }
 }

@@ -5,13 +5,9 @@ import Navbar from './components/Navbar.vue'
 import Pop from './utils/Pop.js';
 import { adsService } from './services/AdsService.js';
 
+onMounted(() => { getAds() })
 const ads = computed(() => AppState.ads)
-
-onMounted(() => {
-  getAdds()
-})
-
-async function getAdds() {
+async function getAds() {
   try {
     await adsService.getAds()
   } catch (error) {
@@ -23,16 +19,14 @@ async function getAdds() {
 <template>
   <header>
     <Navbar />
-    <div v-for="ad in ads" :key="ad.title">
-      <AdsCard :adsProp="ad" />
-    </div>
   </header>
   <main>
+    <div class="d-flex justify-content-center" v-for="ad in ads" :key="ad.title">
+      <AdsCard :adsProp="ad" />
+    </div>
     <router-view />
-
   </main>
   <footer class="bg-dark text-light">
-
   </footer>
 </template>
 

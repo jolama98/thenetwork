@@ -3,11 +3,29 @@ import { computed, onMounted } from 'vue';
 import Pop from '../utils/Pop.js';
 import { postService } from '../services/PostsService.js';
 import { AppState } from '../AppState.js';
+import { profilesService } from '../services/ProfileService.js';
+import { Profile } from '../models/Profile.js';
+
+
 
 const posts = computed(() => AppState.posts)
-const ads = computed(() => AppState.ads)
 
-onMounted(() => { getPosts() })
+const profiles = computed(() => AppState.profile)
+
+onMounted(() => {
+  discoverMovies()
+  getPosts()
+  console.log('posts', posts.value)
+})
+
+async function discoverMovies() {
+  try {
+    await profilesService.searchProfiles()
+  } catch (error) {
+    console.error(error)
+    Pop.toast("could not discover movies ☹️", 'error')
+  }
+}
 
 async function getPosts() {
   try {
@@ -17,16 +35,19 @@ async function getPosts() {
   }
 }
 
+
 </script>
-
-
 <template>
+  <div class="row">
+    <div class="col-10">
+      <div class="d-flex justify-content-end">
+        <Shearch />
+      </div>
+    </div>
+  </div>
   <NavigatButton />
   <section class="container">
     <AddPost />
-    <div v-for="ad in ads" :key="ad.title">
-      <AdCard />
-    </div>
     <div class="row">
       <div class="col-12" v-for="post in posts" :key="post.id">
         <PostsCard :postProp="post" />

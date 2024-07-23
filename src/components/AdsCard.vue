@@ -11,8 +11,8 @@ const props = defineProps({
 
 
 <template>
-  <div>
-    <p>{{ adsProp.banner }}</p>
+  <div class="d-flex justify-content-center p-3">
+    <img :src="adsProp.banner" alt="">
   </div>
 </template>
 

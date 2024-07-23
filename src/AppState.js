@@ -21,4 +21,5 @@ export const AppState = reactive({
   activePosts: null,
   /** @type {import('./models/Ads.js').Ads[]} */
   ads: [],
+  searchingFor: null
 })

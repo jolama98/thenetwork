@@ -15,9 +15,6 @@ async function changePage(pageNumber) {
   }
 }
 </script>
-
-
-
 <template>
   <section class="row justify-content-between m-4">
     <button :disabled="currentPage == 1" class="col-3 btn btn-primary" @click="changePage(currentPage - 1)"><i

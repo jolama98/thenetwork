@@ -42,7 +42,7 @@ async function destroyCar(postId) {
     <div class="card mb-3 shadow-lg p-3 mb-1 rounded">
       <div class="card-body">
         <router-link :to="{ name: 'Profile', params: { profileId: postProp.creatorId } }"
-          :title="`Go to ${postProp.creator.name}'s profile page`">
+          :title="`Go to ${postProp.creator?.name}'s profile page`">
           <img :src="postProp.creator.picture" class="creator-picture m-2  " alt="...">
           <p>{{ postProp.creator.name }}</p>
         </router-link>
