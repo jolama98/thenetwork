@@ -1,0 +1,29 @@
+<script setup>
+import { AppState } from '../AppState.js';
+import { computed } from 'vue';
+import Pop from '../utils/Pop.js';
+
+
+const currentPage = computed(() => AppState.currentPage)
+async function changePage(posts) {
+  try {
+  } catch (error) {
+    console.error(error)
+    Pop.toast("Could not change page", 'error')
+  }
+}
+</script>
+
+
+<template>
+  <section class="row justify-content-between m-4">
+    <button :disabled="currentPage == 1" class="col-3 btn btn-primary" @click="changePage(currentPage - 1)"><i
+        class="mdi mdi-arrow-left"></i> Previous</button>
+    <div class="col-3 text-center fw-bold">{{ currentPage }}</div>
+    <button @click="changePage(currentPage + 1)" class="col-3 btn btn-primary">Next<i
+        class="mdi mdi-arrow-right"></i></button>
+  </section>
+</template>
+
+
+<style lang="scss" scoped></style>

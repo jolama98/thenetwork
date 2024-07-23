@@ -1,26 +1,36 @@
 <script setup>
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
-// TODO use an onMounted to get ads here
+import Pop from './utils/Pop.js';
+import { adsService } from './services/AdsService.js';
+
+const ads = computed(() => AppState.ads)
+
 onMounted(() => {
-  setActiveAds()
+  getAdds()
 })
 
-function setActiveAds() {
-
+async function getAdds() {
+  try {
+    await adsService.getAds()
+  } catch (error) {
+    Pop.error(error)
+  }
 }
 </script>
 
 <template>
   <header>
     <Navbar />
+    <div v-for="ad in ads" :key="ad.title">
+      <AdsCard :adsProp="ad" />
+    </div>
   </header>
   <main>
     <router-view />
 
   </main>
-  <!-- TODO after gettings ads, v-for over them and display them -->
   <footer class="bg-dark text-light">
 
   </footer>

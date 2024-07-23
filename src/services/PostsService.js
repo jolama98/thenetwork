@@ -9,9 +9,13 @@ class PostService {
     AppState.activePost = posts
   }
 
+  // const response = await api.get('api/projects')
+  //   logger.log('GOT PROJECTS 🖼️🎨🎭', response.data)
+  // const projects = response.data.map(projectPOJO => new Project(projectPOJO))
+  //   AppState.projects = projects
+
   async getPosts() {
     const response = await api.get('api/posts')
-    logger.log(response.data)
     const posts = response.data.posts.map(postsPOJO => new Post(postsPOJO))
     AppState.posts = posts
   }
@@ -33,6 +37,7 @@ class PostService {
   async likePosts(postId) {
     const reactive = await api.post(`api/posts/${postId}/like`)
   }
+
 
   async loadMore(pageNumber) {
     const response = await api.get(`api/posts?page=${pageNumber}`)
